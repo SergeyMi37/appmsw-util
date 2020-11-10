@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Document name="appmsw-util.ZPM">
+<Module>
+ <Name>appmsw-util</Name>
+  <Version>1.0.0</Version>
+  <Description>Creating and deleting db, namespace, resource and role with one command</Description>
+  <Packaging>module</Packaging>
+  <SourcesRoot>./</SourcesRoot> 
+	<Invokes>
+	<Invoke Class="appmsw.util.database" Method="Init"></Invoke>
+	</Invokes>
+  <Resource Name="appmsw.PKG"/> 
+</Module>
+</Document>
+</Export>
