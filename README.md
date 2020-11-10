@@ -1,8 +1,13 @@
-![](https://github.com/SergeyMi37/appmsw-util/blob/master/doc/appmsw-util-db.png)
-## appmsw-telestat
+![](https://github.com/SergeyMi37/appmsw-util/blob/master/doc/appmsw-util-database.png)
+## appmsw-util
 [![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/appmsw-telestat-1)
 
-Solution for the Telegram messenger, Bot-admin administer Bot-Informant, which delivers content to users.
+Creating and deleting db, namespace, resource and role with one command
+Forked from https://openexchange.intersystems.com/package/isc-generate-db
+
+Added resource and role creation for the database. (Many modules ZPM require MatchRoles=":{$dbrole}")
+Added deletion of DataBases, role resources and Namespace.
+Adding rest application is optional.
 
 ## Installation with ZPM
 
@@ -40,6 +45,11 @@ $ docker-compose exec iris iris session iris
 USER>
 USER>zpm
 zpm:USER>install appmsw-util
+...
+example:
+write $System.Status.GetErrorText(##class(appmsw.util.database).CreateDBNS("TESTDB2"))
+write $System.Status.GetErrorText(##class(appmsw.util.database).DeleteDBNS("TESTDB2"))
+...
 ```
 
 
