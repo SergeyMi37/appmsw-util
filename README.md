@@ -3,10 +3,13 @@
 [![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/appmsw-telestat-1)
 
 Creating and deleting db, namespace, resource and role with one command
+
 Forked from https://openexchange.intersystems.com/package/isc-generate-db
 
 Added resource and role creation for the database. (Many modules ZPM require MatchRoles=":{$dbrole}")
+
 Added deletion of DataBases, role resources and Namespace.
+
 Adding rest application is optional.
 
 ## Installation with ZPM
