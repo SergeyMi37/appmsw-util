@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26">
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Red Hat Enterprise Linux for x86-64) 2020.3 (Build 302U)" ts="2020-11-15 15:38:43">
 <Class name="appmsw.util.database">
 <Description>
-Creating and deleting db, namespace, resource and role with one command
+Utility for creating and deleting databases with one command 
 Create DataBase and Namespace with CSP, REST application 
 Forked from https://openexchange.intersystems.com/package/isc-generate-db
 
@@ -17,6 +17,7 @@ create db and namespace without resource and role
 write $System.Status.GetErrorText(##class(%ZPM.PackageManager.Developer.UnitTest.Utils).CreateNamespace("testdb14"))
 write $System.Status.GetErrorText(##class(%ZPM.PackageManager.Developer.UnitTest.Utils).DeleteNamespace("testdb14"))</Description>
 <Abstract>1</Abstract>
+<TimeChanged>65698,56315.330173</TimeChanged>
 <TimeCreated>65687,72123.672838</TimeCreated>
 
 <Parameter name="LIBRARY">
@@ -124,7 +125,7 @@ Create new database directory</Description>
             #; create new Resource
             Set dbName = pNamespace_dbSuffix
             set $Namespace=CurrNS
-            Set sc = $$$ADDSC(sc,##class(appmsw.util.database).CreateRole($ZCONVERT(dbName,"U")))
+            Set sc = $$$ADDSC(sc,..CreateRole($ZCONVERT(dbName,"U")))
             Quit:$$$ISERR(sc)
             Set $Namespace = "%SYS"
             
@@ -222,7 +223,6 @@ w $system.Status.GetErrorText(##class(appmsw.util.database).DeleteResource("DSWD
  Set sc = $$$OK
    s nameR="%DB_"_dbName
 	if ##class(Security.Resources).Exists(nameR) {
-		w !,"=",nameR
 		Set sc = $$$ADDSC(sc,##class(Security.Resources).Delete(nameR))
 		Quit:$$$ISERR(sc) sc
 		w !,"Delete Resource "_nameR
@@ -244,7 +244,6 @@ w $system.Status.GetErrorText(##class(appmsw.util.database).DeleteRole("DSWDATA"
  Set sc = $$$OK
    s nameR="%DB_"_dbName
 	if ##class(Security.Roles).Exists(nameR) {
-		w !,"==",nameR
 		Set sc = $$$ADDSC(sc,##class(Security.Roles).Delete(nameR))
 		Quit:$$$ISERR(sc) sc
 		w !,"Delete role "_nameR
@@ -480,8 +479,8 @@ w $system.Status.GetErrorText(##class(appmsw.util.database).DeleteDBNS("SWAGGERU
 <FormalSpec>pNamespace</FormalSpec>
 <ReturnType>%Status</ReturnType>
 <Implementation><![CDATA[
-	set pNamespace=$ZCONVERT(pNamespace,"L")
-	Set sc = ##class(%ZPM.PackageManager.Developer.UnitTest.Utils).DeleteNamespace(pNamespace)
+	if $namespace=$ZCONVERT(pNamespace,"U") set $namespace="%SYS"
+	Set sc = ##class(%ZPM.PackageManager.Developer.UnitTest.Utils).DeleteNamespace($ZCONVERT(pNamespace,"L"))
 	Quit:$$$ISERR(sc) sc
 	Set sc = ..DeleteResource($ZCONVERT(pNamespace,"U"))
 	;Quit:$$$ISERR(sc) sc
