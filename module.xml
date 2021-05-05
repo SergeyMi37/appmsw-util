@@ -3,7 +3,7 @@
 <Document name="appmsw-util.ZPM">
 <Module>
  <Name>appmsw-util</Name>
-  <Version>1.0.3</Version>
+  <Version>1.0.4</Version>
   <Description>Creating and deleting db, namespace, resource and role with one command</Description>
   <Packaging>module</Packaging>
   <SourcesRoot>./</SourcesRoot> 
